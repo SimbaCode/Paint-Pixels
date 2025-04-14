@@ -4,24 +4,33 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pastel Pixels</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
-      font-family: 'Comic Sans MS', cursive;
+      font-family: 'Quicksand', sans-serif;
       background: #fffaf0;
       text-align: center;
       padding: 20px;
+      margin: 0;
     }
     h1 {
-      margin-bottom: 5px;
+      font-size: 36px;
+      margin-bottom: 10px;
     }
     h2 {
       margin-top: 0;
       font-weight: normal;
-      font-size: 18px;
+      font-size: 16px;
       color: #888;
     }
     .palette {
-      margin-bottom: 20px;
+      margin: 20px 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
     }
     .color-swatch {
       width: 30px;
@@ -29,19 +38,19 @@
       display: inline-block;
       border: 2px solid #000;
       cursor: pointer;
-      margin: 0 5px;
+      margin: 5px;
+      border-radius: 4px;
     }
     .grid {
       display: grid;
-      grid-template-columns: repeat(11, 40px);
-      grid-template-rows: repeat(11, 40px);
+      grid-template-columns: repeat(11, 8vw);
+      grid-auto-rows: 8vw;
       gap: 2px;
       justify-content: center;
-      margin: 0 auto 20px;
+      max-width: 100vw;
+      margin: 0 auto;
     }
     .cell {
-      width: 40px;
-      height: 40px;
       background-color: white;
       border: 1px solid #ccc;
       cursor: pointer;
@@ -50,30 +59,25 @@
       margin-top: 20px;
     }
     button {
-      padding: 10px 20px;
-      font-size: 16px;
-      margin: 5px;
+      padding: 10px 16px;
+      font-size: 14px;
+      margin: 6px;
       border: none;
       cursor: pointer;
       border-radius: 8px;
       background-color: #f0c4ff;
+      font-family: 'Quicksand', sans-serif;
+    }
+    @media (min-width: 768px) {
+      .grid {
+        grid-template-columns: repeat(11, 40px);
+        grid-auto-rows: 40px;
+      }
     }
   </style>
 </head>
 <body>
-  <h1> <span style="display:inline-block; padding:4px 8px; background:#FFDFBA; border-radius:6px;">P</span>
-    <span style="display:inline-block; padding:4px 8px; background:#FFFFBA; border-radius:6px;">A</span>
-    <span style="display:inline-block; padding:4px 8px; background:#BAFFC9; border-radius:6px;">I</span>
-    <span style="display:inline-block; padding:4px 8px; background:#BAE1FF; border-radius:6px;">N</span>
-    <span style="display:inline-block; padding:4px 8px; background:#E6CCFF; border-radius:6px;">T</span>
-    &nbsp;
-    <span style="display:inline-block; padding:4px 8px; background:#C2F0FC; border-radius:6px;">P</span>
-    <span style="display:inline-block; padding:4px 8px; background:#FFF0F5; border-radius:6px;">I</span>
-    <span style="display:inline-block; padding:4px 8px; background:#F0FFF0; border-radius:6px;">X</span>
-    <span style="display:inline-block; padding:4px 8px; background:#FAFAD2; border-radius:6px;">E</span>
-    <span style="display:inline-block; padding:4px 8px; background:#F5F5DC; border-radius:6px;">L</span>
-    <span style="display:inline-block; padding:4px 8px; background:#FFE4E1; border-radius:6px;">S</span>
-  </h1>
+  <h1>Pastel Pixels</h1>
   <h2>created by simmixart</h2>
   <div class="palette" id="palette"></div>
   <div class="grid" id="grid"></div>
@@ -130,4 +134,3 @@
   </script>
 </body>
 </html>
-
