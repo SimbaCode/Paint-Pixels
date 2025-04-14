@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pastel Pixels</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive;
+      background: #fffaf0;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      margin-bottom: 5px;
+    }
+    h2 {
+      margin-top: 0;
+      font-weight: normal;
+      font-size: 18px;
+      color: #888;
+    }
+    .palette {
+      margin-bottom: 20px;
+    }
+    .color-swatch {
+      width: 30px;
+      height: 30px;
+      display: inline-block;
+      border: 2px solid #000;
+      cursor: pointer;
+      margin: 0 5px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(11, 40px);
+      grid-template-rows: repeat(11, 40px);
+      gap: 2px;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+    .cell {
+      width: 40px;
+      height: 40px;
+      background-color: white;
+      border: 1px solid #ccc;
+      cursor: pointer;
+    }
+    .controls {
+      margin-top: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 5px;
+      border: none;
+      cursor: pointer;
+      border-radius: 8px;
+      background-color: #f0c4ff;
+    }
+  </style>
+</head>
+<body>
+  <h1> <span style="display:inline-block; padding:4px 8px; background:#FFDFBA; border-radius:6px;">P</span>
+    <span style="display:inline-block; padding:4px 8px; background:#FFFFBA; border-radius:6px;">A</span>
+    <span style="display:inline-block; padding:4px 8px; background:#BAFFC9; border-radius:6px;">I</span>
+    <span style="display:inline-block; padding:4px 8px; background:#BAE1FF; border-radius:6px;">N</span>
+    <span style="display:inline-block; padding:4px 8px; background:#E6CCFF; border-radius:6px;">T</span>
+    &nbsp;
+    <span style="display:inline-block; padding:4px 8px; background:#C2F0FC; border-radius:6px;">P</span>
+    <span style="display:inline-block; padding:4px 8px; background:#FFF0F5; border-radius:6px;">I</span>
+    <span style="display:inline-block; padding:4px 8px; background:#F0FFF0; border-radius:6px;">X</span>
+    <span style="display:inline-block; padding:4px 8px; background:#FAFAD2; border-radius:6px;">E</span>
+    <span style="display:inline-block; padding:4px 8px; background:#F5F5DC; border-radius:6px;">L</span>
+    <span style="display:inline-block; padding:4px 8px; background:#FFE4E1; border-radius:6px;">S</span>
+  </h1>
+  <h2>created by simmixart</h2>
+  <div class="palette" id="palette"></div>
+  <div class="grid" id="grid"></div>
+  <div class="controls">
+    <button onclick="clearCanvas()">Clear Canvas</button>
+    <button onclick="saveDrawing()">Save Drawing</button>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script>
+    const colors = [
+      '#FFB3BA', '#FFDFBA', '#FFFFBA', '#BAFFC9', '#BAE1FF', '#E6CCFF',
+      '#C2F0FC', '#FFF0F5', '#F0FFF0', '#FAFAD2', '#F5F5DC', '#FFE4E1'
+    ];
+
+    let currentColor = '#000';
+
+    const paletteDiv = document.getElementById('palette');
+    colors.forEach(color => {
+      const swatch = document.createElement('div');
+      swatch.className = 'color-swatch';
+      swatch.style.backgroundColor = color;
+      swatch.addEventListener('click', () => {
+        currentColor = color;
+      });
+      paletteDiv.appendChild(swatch);
+    });
+
+    const gridDiv = document.getElementById('grid');
+    const cells = [];
+    for (let i = 0; i < 121; i++) {
+      const cell = document.createElement('div');
+      cell.className = 'cell';
+      cell.addEventListener('click', () => {
+        cell.style.backgroundColor = currentColor;
+      });
+      gridDiv.appendChild(cell);
+      cells.push(cell);
+    }
+
+    function clearCanvas() {
+      cells.forEach(cell => {
+        cell.style.backgroundColor = 'white';
+      });
+    }
+
+    function saveDrawing() {
+      html2canvas(document.getElementById('grid')).then(canvas => {
+        const link = document.createElement('a');
+        link.download = 'pixel-art.png';
+        link.href = canvas.toDataURL();
+        link.click();
+      });
+    }
+  </script>
+</body>
+</html>
+
