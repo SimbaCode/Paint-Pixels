@@ -43,7 +43,7 @@
     }
     .grid {
       display: grid;
-      grid-template-columns: repeat(11, 8vw);
+      grid-template-columns: repeat(10, 8vw);
       grid-auto-rows: 8vw;
       gap: 2px;
       justify-content: center;
@@ -70,7 +70,7 @@
     }
     @media (min-width: 768px) {
       .grid {
-        grid-template-columns: repeat(11, 40px);
+        grid-template-columns: repeat(10, 40px);
         grid-auto-rows: 40px;
       }
     }
@@ -107,7 +107,7 @@
 
     const gridDiv = document.getElementById('grid');
     const cells = [];
-    for (let i = 0; i < 121; i++) {
+    for (let i = 0; i < 100; i++) { // 10x10 = 100
       const cell = document.createElement('div');
       cell.className = 'cell';
       cell.addEventListener('click', () => {
